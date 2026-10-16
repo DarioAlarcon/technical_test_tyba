@@ -10,7 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
   http: ^1.2.0
   flutter_riverpod: ^2.4.3
   image_picker: ^1.0.7

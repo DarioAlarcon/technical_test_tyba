@@ -84,12 +84,10 @@ class _UniversitiesListPageState extends ConsumerState<UniversitiesListPage> {
     return state.layout == LayoutType.list
         ? buildList(
             state,
-            ref,
             () => ref.read(universitiesProvider.notifier).loadMore(),
           )
         : buildGrid(
             state,
-            ref,
             () => ref.read(universitiesProvider.notifier).loadMore(),
           );
   }

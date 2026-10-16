@@ -9,17 +9,6 @@ import '../models/university.dart';
 import '../providers/universities_provider.dart';
 import '../core/app_colors.dart';
 
-Future<void> openUrl(String url) async {
-  final uri = Uri.parse(url);
-
-  if (!await launchUrl(
-    uri,
-    mode: LaunchMode.externalApplication, // importante en web
-  )) {
-    throw Exception('No se pudo abrir $url');
-  }
-}
-
 class UniversityDetailPage extends ConsumerStatefulWidget {
   const UniversityDetailPage({
     super.key,
@@ -40,6 +29,24 @@ class _UniversityDetailPageState extends ConsumerState<UniversityDetailPage> {
   late final TextEditingController _studentsController;
 
   File? _image;
+
+  Future<void> _openUrl(String url) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final uri = Uri.tryParse(url);
+
+    var opened = false;
+    if (uri != null) {
+      try {
+        opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
+      } catch (_) {
+        opened = false;
+      }
+    }
+
+    if (!opened) {
+      messenger.showSnackBar(SnackBar(content: Text('Could not open $url')));
+    }
+  }
 
   @override
   void initState() {
@@ -119,7 +126,7 @@ class _UniversityDetailPageState extends ConsumerState<UniversityDetailPage> {
               Text('Web pages', style: Theme.of(context).textTheme.titleMedium),
               ...university.webPages.map(
                 (url) => InkWell(
-                  onTap: () => openUrl(url),
+                  onTap: () => _openUrl(url),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Text(

@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tyba_technical_test/screens/university_detail_page.dart';
 
 import '../providers/universities_state.dart';
 import '../core/app_colors.dart';
 
-Widget buildGrid(
-  UniversitiesState state,
-  WidgetRef ref,
-  Function() onLoadMore,
-) {
+Widget buildGrid(UniversitiesState state, Function() onLoadMore) {
   return GridView.builder(
     padding: const EdgeInsets.all(12),
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

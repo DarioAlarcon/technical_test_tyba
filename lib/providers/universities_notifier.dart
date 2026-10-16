@@ -11,11 +11,7 @@ class UniversitiesNotifier extends StateNotifier<UniversitiesState> {
   static const int _itemsPerPage = 20;
 
   Future<void> loadUniversities() async {
-    state = state.copyWith(
-      isLoading: true,
-      errorMessage: null,
-      clearError: true,
-    );
+    state = state.copyWith(isLoading: true, clearError: true);
 
     try {
       final universities = await _service.fetchUniversities();

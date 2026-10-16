@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tyba_technical_test/screens/university_detail_page.dart';
 
 import '../providers/universities_state.dart';
 import '../core/app_colors.dart';
 
-Widget buildList(
-  UniversitiesState state,
-  WidgetRef ref,
-  Function() onLoadMore,
-) {
+Widget buildList(UniversitiesState state, Function() onLoadMore) {
   return ListView.builder(
     padding: const EdgeInsets.all(12),
     itemCount: state.universities.length + (state.hasMoreData ? 1 : 0),
