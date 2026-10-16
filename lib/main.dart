@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tyba_technical_test/screens/universities_list_page.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+      home: const UniversitiesListPage(),
     );
   }
 }
